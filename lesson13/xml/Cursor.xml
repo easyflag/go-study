@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CursorConfig>
+	<StandardCursor>
+		<Cursor Name="Normal" Path="cursor\cursor_standard\normal.cur" HotSpotX="0" HotSpotY="0" />
+		<Cursor Name="Click" Path="cursor\cursor_standard\click.cur" HotSpotX="0" HotSpotY="0" />
+		<Cursor Name="Edit" Path="cursor\cursor_standard\edit.cur" HotSpotX="0" HotSpotY="0" />
+		<Cursor Name="Forbid" Path="cursor\cursor_standard\forbid.cur" HotSpotX="0" HotSpotY="0" />
+		<Cursor Name="Hori" Path="cursor\cursor_standard\hori.cur" HotSpotX="0" HotSpotY="0" />
+		<Cursor Name="Link" Path="cursor\cursor_standard\link.cur" HotSpotX="0" HotSpotY="0" />
+		<Cursor Name="Vert" Path="cursor\cursor_standard\vert.cur" HotSpotX="0" HotSpotY="0" />
+		<Cursor Name="Hand" Path="cursor\cursor_standard\link.cur" HotSpotX="0" HotSpotY="0" />
+	</StandardCursor>
+	<CustomCursor>
+		<Cursor ID="1" Path="lion.bmp" HotSpotX="10" HotSpotY="10" />
+	</CustomCursor>
+</CursorConfig>

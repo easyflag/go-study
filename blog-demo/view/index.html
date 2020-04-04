@@ -1,0 +1,98 @@
+{{define "view/index.html"}}
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="gb2312">
+  <title>首页</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link href="/static/css/base.css" rel="stylesheet">
+  <link href="/static/css/index.css" rel="stylesheet">
+  <link href="/static/css/m.css" rel="stylesheet">
+  <link href="/static/css/1.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+  <script type="text/javascript" src="/static/js/jquery.js"></script>
+</head>
+
+<body>
+  <script>
+    window.onload = function () {
+      var oH2 = document.getElementsByTagName("h2")[0];
+      var oUl = document.getElementsByTagName("ul")[0];
+      oH2.onclick = function () {
+        var style = oUl.style;
+        style.display = style.display == "block" ? "none" : "block";
+        oH2.className = style.display == "block" ? "open" : ""
+      }
+    }
+  </script>
+  <div id="wrapper">
+    {{ template "header.html" . }}
+    <div class="jztop"></div>
+    <div class="container">
+      <div class="bloglist f_l">
+        <ul>
+          {{range .articleList}}
+          <li>
+            <h3 class="blogtitle"><span><a href="/articles/list?category={{.CategoryName}}">{{.CategoryName}}</a></span>
+              {{.Title}}</h3>
+            <div class="bloginfo">
+              <p>{{.Summary}}</p>
+            </div>
+            <div class="autor"><span class="lm f_l"></span><span class="dtime f_l">
+              {{.UpdateTime.Format "2006-01-02 15:04:05"}}</span>
+              <span class="viewnum f_l">浏览（{{.ViewCount}}）</span>
+              <span class="commentnum f_l">评论（{{.CommentCount}}）</span>
+              <span class="authornum f_l">作者（<a href="/users/view/{{.UserName}}">{{.UserName}}</a>）</span>
+              <span class="f_r"><a href="/articles/view/{{.ID}}" class="more">阅读原文&gt;&gt;</a></span></div>
+          </li>
+          {{end}}
+        </ul>
+      </div>
+      <div class="r_box f_r">
+        <div class="tit01">
+          <h3 class="tit">关注我</h3>
+          <div class="gzwm">
+            <ul>
+              <li><a class="email" href="#" target="_blank">我的电话</a></li>
+              <li><a class="qq" href="#mailto:admin@admin.com" target="_blank">我的邮箱</a></li>
+              <li><a class="tel" href="#" target="_blank">我的QQ</a></li>
+              <li><a class="prize" href="#">个人奖项</a></li>
+            </ul>
+          </div>
+        </div>
+        <!--tit01 end-->
+
+        <div class="cloud">
+          <h2 class="tit">标签云</h2>
+          <ul>
+            {{range $i,$v := .categories}}
+            {{if gt $i 0}}
+            <a href="/articles/list?category={{.Class}}">{{.Class}}</a> 
+            {{end}}
+            {{end}}
+          </ul>
+        </div>
+
+        <div class="ph">
+          <h3 class="tit">点击排行</h3>
+          <ul class="rank">
+            {{range .articleRank}}
+            <li><a href="/articles/view/{{.ID}}" >{{.Title}}</a></li>
+            {{end}}
+          </ul>
+        </div>
+        <div class="ad"> <img src="/static/images/03.jpg"> </div>
+      </div>
+    </div>
+    <!-- container代码 结束 -->
+    <div class="jzend"></div>
+    {{ template "footer.html" . }}
+  </div>
+</body>
+
+</html>
+{{end}}

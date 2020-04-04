@@ -1,0 +1,136 @@
+{{define "view/submit_article.html"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<script src="/static/ckeditor5-build-classic/ckeditor1.js"></script>
+	<title>文章发布</title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/static/css/base.css" rel="stylesheet">
+	<link href="/static/css/index.css" rel="stylesheet">
+	<link href="/static/css/m.css" rel="stylesheet">
+</head>
+
+<body>
+		{{ template "header.html" . }}
+		<form {{if .article}}action="/articles/mod/{{.article.ID}}"{{else}}action="/articles/submit/"
+		{{end}} method="post">
+			<div style="margin:auto;height:40px;width:70%; line-height:40px">
+				<label for="author">文章标题 <span class="required">*</span></label>
+				<input id="author" name="title" type="text" size="100" maxlength="100" required="required"
+				{{if .article}} value="{{.article.Title}}" {{end}}>
+			</div>
+			<div style="margin:auto;width:70%;align-items:center;">
+				<label for="author" style="line-height:40px;">文章分类 <span class="required">*</span></label>
+				<select name="categoryID">
+					{{range $i,$v := .categoryList}}
+					{{if gt $i 0}}
+					{{if $.article}}
+					{{if eq .ID  $.article.CategoryID}}
+					<option value="{{.ID}}" selected>{{.Class}}</option>
+					{{else}}
+					<option value="{{.ID}}">{{.Class}}</option>
+					{{end}}
+					{{else}}
+					<option value="{{.ID}}">{{.Class}}</option>
+					{{end}}
+					{{end}}
+					{{end}}
+				</select>
+			</div>
+			<div style="margin:auto;width:70%;align-items:center;">
+				<label for="author" style="line-height:40px;">文章内容 <span class="required">*</span></label>
+				<textarea name="content" id="editor" cols="180" rows="36">
+					{{if .article}}{{.article.Content}}{{end}}</textarea>
+			</div>
+			<h3 style="color: rgba(241, 11, 11, 0.753); margin-left: 700px;">{{.msg}}</h3>
+			<div style="margin:auto;height:40px;width:70%; line-height:40px; 
+			text-align: right;">
+				<input type="submit" name="post" {{if .article}}value="确认修改"
+				{{else}}value="发布文章"{{end}} style="width: 100px; height: 60px; 
+				background-color: lightgray; shape-outside: round;">
+
+			</div>
+			<script>
+				ClassicEditor
+					.create(document.querySelector('#editor'), {
+						ckfinder: {
+							uploadUrl: '/upload/file/'
+							//后端处理上传逻辑返回json数据,包括uploaded(选项true/false)和url两个字段
+						}
+					})
+					.then(editor => {
+						console.log(editor);
+					})
+					.catch(error => {
+						console.error(error);
+					});
+
+			</script>
+			<style>
+				.ck-editor__editable {
+					min-height: 320px;
+				}
+			</style>
+			</script>
+		</form>
+	{{ template "footer.html" . }}
+</body>
+
+</html>
+{{end}}
+
+
+<!--<form action="/articles/submit/" method="post">
+	<div style="margin:auto;height:40px;width:70%; line-height:40px">
+		<label for="author">文章标题 <span class="required">*</span></label>
+		<input id="author" name="title" type="text" value="" size="128" maxlength="128"
+			required="required">
+	</div>
+	<div style="margin:auto;width:70%;align-items:center;">
+		<label for="author" style="line-height:40px;">文章分类 <span
+				class="required">*</span></label>
+		<select name="categoryID">
+			{{range .categoryList}}
+			<option value="{{.ID}}">{{.Class}}</option>
+			{{end}}
+		</select>
+	</div>
+	<div style="margin:auto;width:70%;align-items:center;">
+		<label for="author" style="line-height:40px;">文章内容 <span
+				class="required">*</span></label>
+		<textarea name="content" id="editor" style="width:245mm;height:100mm;">
+</textarea>
+	</div>
+	<h3 style="color: rgba(241, 11, 11, 0.753); margin-left: 700px;">{{.msg}}</h3>
+	<div style="margin:auto;height:40px;width:70%; line-height:40px">
+		<input type="submit" name="post" value="发布文章" style="width: 100px; height: 60px; 
+background-color: lightgray; shape-outside: round;">
+
+	</div>
+	<script>
+		ClassicEditor
+			.create(document.querySelector('#editor'), {
+				ckfinder: {
+					uploadUrl: '/upload/file/'
+					//后端处理上传逻辑返回json数据,包括uploaded(选项true/false)和url两个字段
+				}
+			})
+			.then(editor => {
+				console.log(editor);
+			})
+			.catch(error => {
+				console.error(error);
+			});
+
+	</script>
+	<style>
+		.ck-editor__editable {
+			min-height: 320px;
+		}
+	</style>
+	</script>
+</form>-->

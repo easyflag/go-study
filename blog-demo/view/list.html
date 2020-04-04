@@ -1,0 +1,81 @@
+{{define "view/list.html"}}
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="gb2312">
+  <title>文章列表</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link href="/static/css/base.css" rel="stylesheet">
+  <link href="/static/css/main.css" rel="stylesheet">
+  <link href="/static/css/m.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+  <script type="text/javascript" src="/static/js/jquery.js"></script>
+</head>
+
+<body>
+  <div id="wrapper">
+    {{ template "header.html" . }}
+    <div class="container">
+      <div class="con_content">
+        <div class="about_box">
+          {{ template "about.html" . }}
+          <h4>当前分类：{{.currentCategory}}</h4>
+          <h4>共有{{.total}}篇文章</h4>
+          <div class="dtxw box">
+
+            {{range .articleList}}
+            <li>
+              <div class="dttext">
+                <ul>
+                  <a href="/articles/view/{{.ID}}">
+                    <h2>{{.Title}}</h2>
+                    <p>{{.Summary}}</p>
+                  </a>
+                  <div class="binfo">
+                    <span class="lm"><a href="/articles/list?category={{.CategoryName}}">{{.CategoryName}}</a></span>
+                    <span>已有{{.ViewCount}}人阅读</span>
+                    <span class="atime">{{.UpdateTime.Format "2006-01-02 15:04:05"}}</span></div>
+                </ul>
+              </div>
+            </li>
+            {{end}}
+            <div style="text-align: center;">
+              按分类
+              <select name="category" style="height: 25px;line-height: 25px;"
+                onchange="window.open(this.options[this.selectedIndex].value,target='_self')">
+                <option selected>--请选择--</option>
+                {{range .categories}}
+                <option value="/articles/list?category={{.Class}}">{{.Class}}</option>
+                {{end}}
+              </select>
+            </div>
+          </div>
+          <div class="pagelist">
+            <a href="/articles/list?category={{.currentCategory}}&page=1">首页</a>
+            {{if lt .prevPage 1}}
+            <b style="color: rgba(0, 0, 0, 0.2);">上一页</b>
+            {{else}}
+            <a href="/articles/list?category={{.currentCategory}}&page={{.prevPage}}">上一页</a>
+            {{end}}
+            第{{.currentPage}}页
+            {{if gt .nextPage .maxPage}}
+            <b style="color: rgba(0, 0, 0, 0.2);">下一页</b>
+            {{else}}
+            <a href="/articles/list?category={{.currentCategory}}&page={{.nextPage}}">下一页</a>
+            {{end}}
+            <a href="/articles/list?category={{.currentCategory}}&page={{.maxPage}}">尾页</a>
+          </div>
+        </div>
+      </div>
+      <div class="blank"></div>
+      <!-- container代码 结束 -->
+    </div>
+    {{ template "footer.html" . }}
+</body>
+
+</html>
+{{end}}

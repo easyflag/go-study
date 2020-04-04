@@ -1,0 +1,97 @@
+{{define "view/view_article.html"}}
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="gb2312">
+  <title>浏览文章</title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <link href="/static/css/base.css" rel="stylesheet">
+  <link href="/static/css/main.css" rel="stylesheet">
+  <link href="/static/css/m.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+  <script type="text/javascript">
+    function CheckPl(obj) {
+      if (obj.saytext.value == "") {
+        alert("您没什么话要说吗？");
+        obj.saytext.focus();
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <div id="wrapper">
+    {{ template "header.html" . }}
+    <div class="container">
+      <div class="con_content">
+        <div class="about_box">
+          {{ template "about.html" . }}
+          <div class="f_box">
+            <p class="a_title">{{.article.Title}}</p>
+            <p class="p_title"></p>
+            <p class="box_p">
+              <span>发布时间：{{.article.UpdateTime.Format "2006-01-02 15:04:05"}}</span>
+              <span>作者： <a href="/users/view/{{.articleUser}}">{{.articleUser}}</a></span>
+              <span>浏览：{{.article.ViewCount}}</span>
+              <span>评论：{{.article.CommentCount}}</span>
+            </p>
+          </div>
+          <ul class="about_content">
+            {{range .paragraph}}
+            <p>{{.}}</p>
+            {{end}}                                                           
+          </ul>
+        </div>
+      </div>
+      <div class="blank"></div>
+
+      <div class="con_content">
+        <h2 style="margin-left: 10mm;">文章评论</h2>
+        <ul>
+          <div class="about_box">
+            <div class="f_box">
+              {{range $i, $v := .comments}}
+              <ul>
+                <p>{{.Content}}</p>
+                <p class="box_p">来自：{{index $.commentUsers $i}}<span>
+                  时间：{{.CreateTime.Format "2006-01-02 15:04:05"}}</span> </p>
+              </ul>
+              {{end}}
+              <span style="margin-left: 200mm;";>共有{{len .comments}}条评论</span>
+            </div>
+          </div>
+        </ul>
+      </div>
+      <form action="/articles/view/{{.article.ID}}" method="post" name="saypl" 
+      onsubmit="return CheckPl(document.saypl)">
+        <div class="con_content">
+          <p class="saying">来说两句吧...</p>
+          <textarea rows="8" cols="133" id="saytext" name="content"></textarea>
+        <div style="text-align: right;">
+            <input name="imageField" type="submit" value="提交" 
+            style="width: 70px; height: 30px;">
+        </div>
+        </div>
+      </form>
+      <!-- container代码 结束 -->
+      {{ template "footer.html" . }}
+    </div>
+    </div>
+</body>
+
+</html>
+{{end}}
+
+
+
+
+
+
+
+

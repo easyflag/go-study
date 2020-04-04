@@ -1,0 +1,19 @@
+<html>
+<head>
+<title></title>
+</head>
+<body>
+	<table border="1px">
+   {{range .}}
+		{{if gt .Age 18}}
+		<tr><td><p>{{.Name}} is an old man</p></tr></td>
+		{{else}}
+		<tr><td><p>{{.Name}} is a young man</p></td></td>
+		{{end}}
+   {{end}}
+   </table>
+</body>
+</html>
+
+
+

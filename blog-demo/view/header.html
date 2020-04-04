@@ -1,0 +1,44 @@
+<!--header.html-->
+<header>
+  <div class="headtop"></div>
+  <div class="contenttop">
+    <div class="logo f_l">{{.logo}}</div>
+    <div class="search f_r">
+      <form action="/" method="post" name="searchform" id="searchform">
+        <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字'}" type="text">
+        <input name="show" value="title" type="hidden">
+        <input name="tempid" value="1" type="hidden">
+        <input name="tbname" value="news" type="hidden">
+        <input name="Submit" class="input_submit" value="搜索" type="submit">
+      </form>
+    </div>
+    <div class="blank"></div>
+    <nav>
+      <div  class="navigation">
+        <ul class="menu"> 
+          <li><a href="/">网站首页</a></li>
+          <li><a href="/articles/list">看文章</a></li>
+          <li><a href="/articles/submit">写文章</a></li>
+          {{if .logInfo.Status}}
+        <li>
+          <a href="/users/view/{{.logInfo.UserName}}">我</a>
+        </li>
+        {{else}}
+        <li><a href="/users/login">登录/注册</a></li>
+        {{end}}
+        </ul>
+      </div>
+    </nav>
+    <SCRIPT type=text/javascript>
+	// Navigation Menu
+	$(function() {
+		$(".menu ul").css({display: "none"}); // Opera Fix
+		$(".menu li").hover(function(){
+			$(this).find('ul:first').css({visibility: "visible",display: "none"}).slideDown("normal");
+		},function(){
+			$(this).find('ul:first').css({visibility: "hidden"});
+		});
+	});
+</SCRIPT> 
+  </div>
+</header>

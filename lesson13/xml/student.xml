@@ -1,0 +1,43 @@
+<students>
+
+<student>
+	<Name>stu81</Name>
+	<Age>18</Age>
+	<Sex>male</Sex>
+	<Class>1554</Class>
+	<Score>77</Score>
+</student>
+
+<student>
+	<Name>stu59</Name>
+	<Age>19</Age>
+	<Sex>male</Sex>
+	<Class>1554</Class>
+	<Score>48</Score>
+</student>
+
+<student>
+	<Name>stu25</Name>
+	<Age>20</Age>
+	<Sex>male</Sex>
+	<Class>1554</Class>
+	<Score>36</Score>
+	</student>
+	
+<student>
+	<Name>stu0</Name>
+	<Age>20</Age>
+	<Sex>male</Sex>
+	<Class>1554</Class>
+	<Score>41</Score>
+</student>
+	
+<student>
+	<Name>stu62</Name>
+	<Age>20</Age>
+	<Sex>male</Sex>
+	<Class>1554</Class>
+	<Score>58</Score>
+</student>
+	
+</students>

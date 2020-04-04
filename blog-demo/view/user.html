@@ -1,0 +1,118 @@
+{{define "view/user.html"}}
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="gb2312">
+    <title>用户</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="/static/css/base.css" rel="stylesheet">
+    <link href="/static/css/main.css" rel="stylesheet">
+    <link href="/static/css/m.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+<script src="js/modernizr.js"></script>
+<![endif]-->
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <style>
+        .yongyin {
+            width: 100px;
+            text-align: center;
+            line-height: 100%;
+            padding: 0.3em;
+            font: 16px Arial, sans-serif bold;
+            font-style: normal;
+            text-decoration: none;
+            margin: 2px;
+            vertical-align: text-bottom;
+            zoom: 1;
+            outline: none;
+            font-size-adjust: none;
+            font-stretch: normal;
+            border-radius: 50px;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+            text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+            color: #fefee9;
+            border: 0.2px solid #17416b;
+            background-repeat: repeat;
+            background-size: auto;
+            background-origin: padding-box;
+            background-clip: padding-box;
+            background-color: #17416b;
+            background: linear-gradient(to bottom, #eeeff9 0%, #17416b 100%);
+        }
+
+        .yongyin:hover {
+            background: rgb(27, 102, 187);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        {{ template "header.html" . }}
+        <div class="container">
+            <div class="con_content">
+                <div class="about_box">
+                    {{ template "about.html" . }}
+                    <h4>{{.userName}}的所有文章</h4>
+                    <form action="/" method="POST" style="text-align: right;">
+                        <input class="yongyin" type="submit" name="submit" value="退出登录"
+                            style="width:80px; height:30px;">
+                    </form>
+                    <div class="dtxw box">
+
+                        <table style=" width: 100%;margin-bottom: 1rem;color: #212529">
+                            <thead style="text-align: left;">
+                                <tr>
+                                    <th>标题</th>
+                                    <th>更新时间</th>
+                                    <th>分类</th>
+                                    <th>评论数</th>
+                                    <th>阅读数</th>
+                                    {{if eq .logInfo.UserName .userName}}
+                                    <th>操作</th>
+                                    <th>操作</th>
+                                    {{else}}
+                                    <th>操作</th>
+                                    {{end}}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!---->
+                                {{range .articles}}
+                                <tr>
+                                    <td><a href="/articles/view/{{.ID}}">{{.Title}}</a>
+                                    </td>
+                                    <td>{{.UpdateTime.Format "2006-01-02 15:04:05"}}</td>
+                                    <td>{{.CategoryName}}</td>
+                                    <td>{{.CommentCount}}</td>
+                                    <td>{{.ViewCount}}</td>
+                                    {{if eq $.logInfo.UserName $.userName}}
+                                    <td><a href="/articles/mod/{{.ID}}">编辑</a></td>
+                                    <td>
+                                        <form action="/users/view/{{$.userName}}" method="POST">
+                                            <input type="hidden" name="artcileID" value="{{.ID}}">
+                                            <input type="submit" value="删除"
+                                                style="background: transparent; outline:none;">
+                                        </form>
+                                    </td>
+                                    {{else}}
+                                    <td><a href="/articles/view/{{.ID}}">阅读原文</a></td>
+                                    {{end}}
+                                </tr>
+                                {{end}}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="blank"></div>
+            <!-- container代码 结束 -->
+        </div>
+        {{ template "footer.html" . }}
+</body>
+
+</html>
+{{end}}

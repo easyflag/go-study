@@ -1,0 +1,60 @@
+{{define "view/login.html"}}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+	<title>登录</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<script type="text/javascript" src="/static/js/jquery-2.1.4.min.js"></script>
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/user.css">
+	<script type="text/javascript" src="/static/js/v.js"></script>
+</head>
+
+<body>
+	<div class="main">
+		<div>
+			<h1 style="color: rgb(190, 200, 218);">欢迎您</h1>
+		</div>
+		<form class="form-horizontal login-form2 clearfix" id="loginForm" method="post" action="/users/login">
+			<div class="user-input-wrap">
+				<span class="input-icon">
+					<input type="text" class="user-form-input login-form-input" id="email" name="userName"
+						maxlength="70" placeholder="用户名">
+					<i class="ace-icon fa fa-envelope bigger-100"></i>
+				</span>
+				<span class="user-form-tips2" id="error_email"></span>
+			</div>
+			<div class="user-input-wrap">
+				<span class="input-icon">
+					<input type="password" class="user-form-input login-form-input password" id="password"
+						name="userPwd" placeholder="密码">
+					<i class="ace-icon fa fa-lock bigger-120"></i>
+				</span>
+				<span class="user-form-tips2" id="error_password"></span>
+			</div>
+			{{if .msg}}
+			<div style="color: rgba(241, 11, 11, 0.753);">
+					<p>{{.msg}}</p>
+			</div>
+			{{end}}
+			<div>
+				<button type="submit" class="submit-btn">登 录</button>
+			</div>
+		</form>
+		<div class="open-link">
+			<span>还没有帐号？</span>
+			<i class="ace-icon fa fa-angle-double-right bigger-100" style="color: #FFF"></i>
+			<a href="/users/register">立即注册</a>
+		</div>
+		<div class="return-home">
+			<a href="/">返回首页</a>
+		</div>
+	</div>
+</body>
+
+</html>
+{{end}}
