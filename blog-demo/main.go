@@ -1,9 +1,10 @@
 package main
 
 import (
+	"blog-demo/controller"
+	"blog-demo/dal/db"
+
 	"github.com/gin-gonic/gin"
-	"github.com/go-study/blog-demo/controller"
-	"github.com/go-study/blog-demo/dal/db"
 )
 
 var router *gin.Engine
