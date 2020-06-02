@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/go-study/blog-demo/dal/db"
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/dal/db"
+	"blog-demo/model"
 )
 
 //GetUser 获取一个用户的全部信息

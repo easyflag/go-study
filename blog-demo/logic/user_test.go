@@ -3,7 +3,7 @@ package logic
 import (
 	"testing"
 
-	"github.com/go-study/blog-demo/dal/db"
+	"blog-demo/dal/db"
 )
 
 func init() {

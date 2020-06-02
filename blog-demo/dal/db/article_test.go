@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/model"
 )
 
 func init() {

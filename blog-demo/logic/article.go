@@ -6,8 +6,9 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/go-study/blog-demo/dal/db"
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/dal/db"
+
+	"blog-demo/model"
 )
 
 //OrganizeArticleListInfo 把文章展示列表需要的信息整合在一起

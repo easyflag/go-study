@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"net/http"
 
+	"blog-demo/dal/db"
+	"blog-demo/model"
+
 	"github.com/gin-gonic/gin"
-	"github.com/go-study/blog-demo/dal/db"
-	"github.com/go-study/blog-demo/model"
 )
 
 //SetLogInfo 获取客户端cookie，维持登录信息

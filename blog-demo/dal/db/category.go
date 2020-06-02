@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/model"
 )
 
 //GetCategoryList 获取文章分类列表

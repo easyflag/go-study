@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/model"
 )
 
 //InsertArticle 向数据库插入文章

@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/go-study/blog-demo/logic"
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/logic"
+	"blog-demo/model"
 
 	"github.com/gin-gonic/gin"
 )
@@ -45,8 +45,8 @@ func IndexShow(c *gin.Context) {
 func IndexPost(c *gin.Context) {
 	if c.PostForm("submit") == "退出登录" {
 		//清除客户端cookie
-		var sameSiteCookie http.SameSite
-		c.SetCookie("token", "", -1, "", "", sameSiteCookie, false, true)
+		//name, value string, maxAge int, path, domain string, secure, httpOnly bool
+		c.SetCookie("token", "", -1, "", "", false, true)
 
 		//删除已登录用户ID表的相应数据
 		I, _ := c.Get("logInfo")
@@ -90,8 +90,7 @@ func RegisterPost(c *gin.Context) {
 	LoginIDs[id]++
 
 	//往客服端写cookie
-	var sameSiteCookie http.SameSite
-	c.SetCookie("token", userName, 3600, "", "", sameSiteCookie, false, true)
+	c.SetCookie("token", userName, 3600, "", "", false, true)
 
 	fmt.Println(userName, userPwd, confirmPwd)
 
@@ -135,8 +134,7 @@ func LoginPost(c *gin.Context) {
 	LoginIDs[id]++
 
 	//往客服端写cookie
-	var sameSiteCookie http.SameSite
-	c.SetCookie("token", userName, 3600, "", "", sameSiteCookie, false, true)
+	c.SetCookie("token", userName, 3600, "", "", false, true)
 
 	c.Redirect(http.StatusMovedPermanently, "/")
 }

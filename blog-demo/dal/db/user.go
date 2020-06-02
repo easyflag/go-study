@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/model"
 )
 
 //SelectUser 查询用户ID，根据匹配的字段名，从数据库获取用户信息
@@ -67,5 +67,3 @@ func GetUserPWoID(userName string) (psw string, id uint64, err error) {
 
 	return
 }
-
-

@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/model"
 )
 
 //SelectComent 查询文章ID，根据匹配的字段名，从数据库获取评论信息

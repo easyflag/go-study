@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/model"
 
 	"github.com/gin-gonic/gin"
 )

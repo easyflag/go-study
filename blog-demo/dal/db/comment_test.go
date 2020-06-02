@@ -3,7 +3,7 @@ package db
 import (
 	"testing"
 
-	"github.com/go-study/blog-demo/model"
+	"blog-demo/model"
 )
 
 func init() {
